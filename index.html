@@ -1,103 +1,200 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
-
   <head>
+    <title>Voxel Critter Creator</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="generator" content="DocPad v6.53.0" />
-    <title>Voxel Builder</title>
-    <link rel="stylesheet" href="css/normalize.css" type="text/css"
-    media="screen">
-    <link rel="stylesheet" href="css/index.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+    <link href="lib/flatui/css/bootstrap.css" rel="stylesheet">
+    <link href="lib/flatui/css/flat-ui.css" rel="stylesheet">
+    <link href="lib/colorpicker/css/colorpicker.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    
   </head>
-
   <body>
-    <div id="wrapper">
-      <header>
-        <h1><a href="/">Voxel Builder</a></h1>
-        <p>Easy cube-based 3D design with DIY 2D/3D printing</p>
-        <nav>
-          <ul>
-            <li class="download"><a href="edit.html" class="topcoat-button--cta">Launch Builder</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <section id="hero">
+    <div id="instructions">
+      <h3 class="demo-panel-title"><a href="/">Voxel Critter Creator</a></h3>
+      
+      <select class="actionsMenu" value="Actions" tabindex="1">
+        <option value="noop" selected="selected">Actions</option>
+        <option value="viewInstructions">View Instructions</option>
+        <option value="loadExample">Load Example Critter</option>
+        <option value="imageImport">Import Image</option>
+        <option value="zoxelImport">Import Zoxel</option>
+        <option value="export">Export PNG</option>
+        <option value="zoxelExport">Export Zoxel</option>
+        <option value="orthogamiExport">Export Orthogami</option>
+        <option value="paperstackExport">Export Paperstack</option>
+        <option value="reset">Reset</option>
+      </select>
+
+      <div class="share mrl">
         <ul>
-          <li id="desktop-preview"></li>
-          <li id="mobile-preview"></li>
+          <li>
+            <label class="share-label" for="share-toggle2">Grid</label>
+            <div data-action="showGrid" class="toggle">
+              <label class="toggle-radio" for="share-toggle2">ON</label>
+              <input type="radio" name="share-toggles" id="share-toggle2" value="toggle1" checked="checked">
+              <label class="toggle-radio" for="share-toggle1">OFF</label>
+              <input type="radio" name="share-toggles" id="share-toggle1" value="toggle2">
+            </div>
+          </li>
+          <li>
+            <label class="share-label" for="share-toggle3">Wireframe</label>
+            <div data-action="setWireframe" class="toggle">
+              <label class="toggle-radio" for="share-toggle4">ON</label>
+              <input type="radio" name="share-toggles2" id="share-toggle4" value="toggle1" checked="checked">
+              <label class="toggle-radio" for="share-toggle3">OFF</label>
+              <input type="radio" name="share-toggles2" id="share-toggle3" value="toggle2">
+            </div>
+          </li>
+          <li>
+            <label class="share-label" for="share-toggle4">Animation</label>
+            <div data-action="toggleAnimation" class="toggle">
+              <label class="toggle-radio" for="share-toggle6">ON</label>
+              <input type="radio" name="share-toggles3" id="share-toggle6" value="toggle1">
+              <label class="toggle-radio" for="share-toggle5">OFF</label>
+              <input type="radio" name="share-toggles3" id="share-toggle5" value="toggle2" checked="checked">
+            </div>
+          </li>
         </ul>
-      </section>
-      <section class="features">
-        <p><strong>Voxel Builder</strong> is an open source tool that lets anyone design and edit 3D voxel (cube) models easily, right in their web browser.</p>
-      </section>
-      <section>
-        <h3>
-          <a name="how-it-works" class="anchor" href="#how-it-works"><span class="octicon octicon-link"></span></a>
-          How it works
-        </h3>
+      </div> <!-- /share -->
+      
+      <div class="row color-container">
+        <div class="span3">
+            <div class="btn-group color-picker">
+              <a class="btn btn-primary colorPickButton active" href="#"><i data-color="0" class="color"></i></a>
+              <a class="btn btn-primary colorPickButton" href="#"><i data-color="1" class="color"></i></a>
+              <a class="btn btn-primary colorPickButton" href="#"><i data-color="2" class="color"></i></a>
+              <a class="btn btn-primary colorPickButton" href="#"><i data-color="3" class="color"></i></a>
+              <a class="btn btn-primary colorPickButton" href="#"><i data-color="4" class="color"></i></a>
+              <a class="btn btn-primary colorAddButton" data-color="#000000" href="#"><i data-color="-1" class="colorAdd">++</i></a>
+            </div>
+        </div>
+      </div>
+      
+     <div id="output"></div>
 
-        <p>Use the <a href="/edit">Builder</a> to create and edit voxel (AKA cube) models.</p>
-
-        <p><a href="http://github.com/maxogden/ndarray-stl/blob/master/img/mario-builder.png" target="_blank"><img src="http://github.com/maxogden/ndarray-stl/raw/master/img/mario-builder.png" alt="mario" style="max-width:100%;"></a></p>
-
-        <p>When you are done, export it as a PNG file (from the menu in Builder), like this:</p>
-
-        <p><a href="https://github-camo.global.ssl.fastly.net/e840a2fed3b267d9f2a79d378e644c9ba36bb0a0/687474703a2f2f692e696d6775722e636f6d2f6363426b4d56592e706e67" target="_blank"><img src="https://github-camo.global.ssl.fastly.net/e840a2fed3b267d9f2a79d378e644c9ba36bb0a0/687474703a2f2f692e696d6775722e636f6d2f6363426b4d56592e706e67" alt="mario-encoded" style="max-width:100%;"></a></p>
-
-        <p>You can manufacture your critter using either a 2D printer or a 3D printer.</p>
-        
-        <h4>2D printer</h4>
-        
-        <p>Visit <a href="http://maxogden.github.io/voxel-2d-print/" target="_blank">this page</a> and drop your critter PNG onto it to generate pages. Print the pages so that each layer is a different page on a color printer. Then use scissors and glue to assemble each layer!</p>
-        
-        <p><img src="img/2d-detail.png"></p>
-        <p><img src="img/robot-detail.png"></p>
-
-        <h4>3D printer</h4>
-        
-        <p>Visit <a href="http://maxogden.github.io/ndarray-stl/" target="_blank">this page</a> and drop your critter PNG onto it to generate a 3D printable STL file.</p>
-        
-        <p><a href="http://github.com/maxogden/ndarray-stl/blob/master/img/mario-makerware.png" target="_blank"><img src="http://github.com/maxogden/ndarray-stl/raw/master/img/mario-makerware.png" alt="mario-makerware" style="max-width:100%;"></a></p>
-
-        <p>The above shows three STL files loaded into MakerWare: unsmoothed, smoothed with <a href="http://www.merl.com/papers/docs/TR99-24.pdf">surface nets</a> and smoothed with <a href="https://en.wikipedia.org/wiki/Marching_cubes">marching cubes</a>.</p>
-
-        <p><a name="printed-marios"></a><a href="#printed-marios"><img src="http://github.com/maxogden/ndarray-stl/raw/master/img/marios-irl.png" alt="marios" style="max-width:100%;"></a></p>
-
-        <p>Here are the 3 variations of Mario printed out by <a href="https://github.com/vladikoff">@vladikoff</a> at the Mozilla San Francisco office. You can view more photos from his print <a href="https://plus.google.com/106106671604413824025/posts/Nfw4aRmttEr">here</a>. Thanks, Vlad!</p>
-
-        <p>Mikola Lysenko, the designer of the Mario model and author of many of the algorithms in Voxel Builder, also wrote <a href="http://0fps.wordpress.com/2012/09/18/turning-8-bit-sprites-into-printable-3d-models/">a post</a> about the process of creating the 3D mario.</p>
-
-        <p>At this point in time there are over <a
-        href="http://mk30.github.io/voxelcrittersbank/">1400 creations</a> that have been made with Voxel Builder. Any of them can be loaded into the ndarray-stl demo. Here are some good ones:</p>
-
-        <ul>
-        <li><a href="http://maxogden.github.io/ndarray-stl/?png=http://i.imgur.com/XawptQv.png">elephant</a></li>
-        <li><a href="http://maxogden.github.io/ndarray-stl/?png=http://i.imgur.com/Gv5Q3UP.png">outrigger boat</a></li>
-        <li><a href="http://maxogden.github.io/ndarray-stl/?png=http://i.imgur.com/ZcSVaqy.png">race car</a></li>
-        </ul><h2>
-      </section>
+      <a href="#about"
+         style="position: absolute; bottom: 10px; right: 10px;"
+      >
+        About
+      </a>
     </div>
-    <footer class="site">
-      <ul>
-        <li id="twitter"><a href="http://twitter.com/voxeljs"></a>
-        </li>
-        <li id="github"><a href="http://github.com/maxogden/voxel-painter"></a>
-        </li>
-      </ul>
-    </footer>
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-38522202-1']);
-      _gaq.push(['_trackPageview']);
+    
+    <div class="animationControls">
+      <div class="playback">
+        <span class="play-pause fui-play"></span>
+      </div>
+      <div class="sliderContainer">
+        <div id="slider" class="ui-slider">
+        </div>
+      </div>
+      <div class="addRemove">
+        <span class="plus-button fui-plus"></span>
+        <span class="minus-button fui-cross"></span>
+      </div>
+    </div>
+    
+    <div id="welcome" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Welcome to Voxel Critter Creator</h3>
+      </div>
+      <div class="modal-body">
+        <div class="span3 hello">
+          <p><h4>Create your own critter!</h4></p>
+          <p>Use your mouse to place blocks. When you are done designing your critter you can share it with the world.</p>
+          <p><img src="assets/img/critter.png"></p>
+        </div>
+        <div class="span3">
+          <div class="tile controls">
+            <p><h4>Controls</h4></p>
+            <p><strong>click + drag</strong> to adjust angle.</p>
+            <p><strong>click</strong> to place a voxel.</p>
+            <p><strong>shift</strong> to delete a voxel.</p>
+            <p><strong>alt</strong> to bulk edit voxels.</p>
+            <p><strong>1-5</strong> to change color.</p>
+            <p><strong>+/-</strong> or <strong>scroll</strong> to zoom.</p>
+            <p><strong>drop</strong> an creature .png image to load it in</p>
+          </div>
+        </div>
+        
+        <div class="span3 hello">
+          <p><h4>Animation</h4></p>
+          <p>Turn on Animation to optionally create a multi-frame voxel critter.</p>
+          <p><img src="assets/img/anigif.gif" width=250></p>
+          <p><a href="/#C/2ecc713498db34495ee67e22ecf0f1cf9f9fffccccf0ff47e8e1cfede4e4f5bc6766bda3:A/fhihhachekhfachckhSfYeShaffShaffShVijSfahhSfahhSfahhYhSfffehdSfVijddfeYhYiYhachYhYiYhbeflThbdeiiSfahhSfahhSfahhSfYhShcbhSfahhSfahhSfahhSfahhSfahhSfahhSfeahhSfahhSfahhSfahhSfahhSfahhSfahhSfddhlafhSfahhYhSfahhSfachSfSfYhYhYhYhafjYhYcYhYheehfSfSfakiSfSfWhiYceifecihUhcefchhYfYfcffUhdkhhYfYfYfYfekehUhSheffhYhUfYfYfYfYfUhYiYfafeUhShYjYfYfejieYfYfefehYhYhchhYfYfchhYhcdfWhfahhehhfYhchdUfShUhShWfhUfeaieUfWhhWfhUffmhffUfcahUfXiehUfehhjYhYhYhYhedhfYhYhYhaheShShWieUfShfccfhUhcifUhfbciZSfaohSfehfhSfUfSheWhfShWffShdqflSfaWhSffpihbSfWfhSffbahlYffjifYUheeehYfchiUffdlfjShWffShXfflShaofShdecYSfWhhacfekhhacffkdhoSfafhSfYeYffjhhYSfceiUfUfYfejhhUh:A1/fhkihSfYeShaffShaffShVijSfahhSfahhSfahhYhSfffehdSfVijddfeYhYiYhachYhYiYhbeflThbdeiiSfahhSfahhSfahhSfYhShcbhSfahhSfahhSfahhSfahhSfahhSfahhSfeahhSfahhSfahhSfahhSfahhSfahhSfahhSfddhlafhSfahhYhSfahhSfachSfSfYhYhYhYhafjYhYcYhYheehfSfSfakiSfSfWhiYceifecihUhcefchhYfYfcffUhdkhhYfYfYfYfekehUhSheffhYhUfYfYfYfYfUhYiYfafeUhShYjYfYfejieYfYfefehYhYhchhYfYfchhYhcdfWhfahhehhfYhchdUfShUhShWfhUfeaieUfWhhWfhUffmhffUfcahUfXiehUfehhjYhYhYhYhedhfYhYhYhaheShShWieUfShfccfhUhcifUhfbciZYoSfYYdmadachekhfachdnkjUfeWhfUffqfhlaWffpihbUfdbalYffjifYUheeehYfchiUffdlfjUfVflaohedcfYhSfYfVhYYhcfhYhcfhYhedfjYfchfYfchfYfVfoYhfdndbYfUfYhephjYfUfYhVflYfaYdYf:A2/fhkihSfYeShaffShaffShVijSfahhSfahhSfahhYhSfffehdSfVijddfeYhYiYhachYhYiYhbeflThbdeiiSfahhSfahhSfahhSfYhShcbhSfahhSfahhSfahhSfahhSfahhSfahhSfeahhSfahhSfahhSfahhSfahhSfahhSfahhSfddhlafhSfahhYhSfahhSfachSfSfYhYhYhYhafjYhYcYhYheehfSfSfakiSfSfWhiYceifecihUhcefchhYfYfcffUhdkhhYfYfYfYfekehUhSheffhYhUfYfYfYfYfUhYiYfafeUhShYjYfYfejieYfYfefehYhYhchhYfYfchhYhcdfWhfahhehhfYhchdUfShUhShWfhUfeaieUfWhhWfhUffmhffUfcahUfXiehUfehhjYhYhYhYhedhfYhYhYhaheShShWieUfShfccfhUhcifUhfbciZYoaYfdmadachekhfachfdkfjUfdmcdUhaehUffdlfjUfflcfdYhcfhYhadjYfchfYfchfYfVfoYhfdndbYfUfYhephjYfUfYhVflYffdcdYYhVfoYffhhfYYfaelYfVfoYhaibYhcanYfchfYffphlbYhUfYfWifYffhdhlYh:A3/fhkihSfYeShaffShaffShVijSfahhSfahhSfahhYhSfffehdSfVijddfeYhYiYhachYhYiYhbeflThbdeiiSfahhSfahhSfahhSfYhShcbhSfahhSfahhSfahhSfahhSfahhSfahhSfeahhSfahhSfahhSfahhSfahhSfahhSfahhSfddhlafhSfahhYhSfahhSfachSfSfYhYhYhYhafjYhYcYhYheehfSfSfakiSfSfWhiYceifecihUhcefchhYfYfcffUhdkhhYfYfYfYfekehUhSheffhYhUfYfYfYfYfUhYiYfafeUhShYjYfYfejieYfYfefehYhYhchhYfYfchhYhcdfWhfahhehhfYhchdUfShUhShWfhUfeaieUfWhhWfhUffmhffUfcahUfXiehUfehhjYhYhYhYhedhfYhYhYhaheShShWieUfShfccfhUhcifUhfbciZYoSfYYdmadachekhfachfdkfjUfdmcdUhaehUffdlfjUfflcfdYhcfhYhadjYfchfYfchfYfVfoYhfihdYYhVfoYffknibUfVflaWffpihbUffYfflaohfdcfYYhadhYfdhfoYfajfYheiliYhdfhbYhUhYfaXdYhUfYfdhflYf:A4/fhihhachekhfachckhSfYeShaffShaffShVijSfahhSfahhSfahhYhSfffehdSfVijddfeYhYiYhachYhYiYhbeflThbdeiiSfahhSfahhSfahhSfYhShcbhSfahhSfahhSfahhSfahhSfahhSfahhSfeahhSfahhSfahhSfahhSfahhSfahhSfahhSfddhlafhSfahhYhSfahhSfachSfSfYhYhYhYhafjYhYcYhYheehfSfSfakiSfSfWhiYceifecihUhcefchhYfYfcffUhdkhhYfYfYfYfekehUhSheffhYhUfYfYfYfYfUhYiYfafeUhShYjYfYfejieYfYfefehYhYhchhYfYfchhYhcdfWhfahhehhfYhchdUfShUhShWfhUfeaieUfWhhWfhUffmhffUfcahUfXiehUfehhjYhYhYhYhedhfYhYhYhaheShShWieUfShfccfhUhcifUhfbciZSfaohSfehfhSfUfSheWhfShWffShdqflSfaWhSffpihbSfWfhSffbahlYffjifYUheeehYfchiUffdlfjShWffShXfflShaofShdecYSfWhhacfekhhacffkdhoSfafhSfYeYffjhhYSfceiUfUfYfejhhUh:A5/fhkihSfYeShaffShaffShVijSfahhSfahhSfahhYhSfffehdSfVijddfeYhYiYhachYhYiYhbeflThbdeiiSfahhSfahhSfahhSfYhShcbhSfahhSfahhSfahhSfahhSfahhSfahhSfeahhSfahhSfahhSfahhSfahhSfahhSfahhSfddhlafhSfahhYhSfahhSfachSfSfYhYhYhYhafjYhYcYhYheehfSfSfakiSfSfWhiYceifecihUhcefchhYfYfcffUhdkhhYfYfYfYfekehUhSheffhYhUfYfYfYfYfUhYiYfafeUhShYjYfYfejieYfYfefehYhYhchhYfYfchhYhcdfWhfahhehhfYhchdUfShUhShWfhUfeaieUfWhhWfhUffmhffUfcahUfXiehUfehhjYhYhYhYhedhfYhYhYhaheShShWieUfShfccfhUhcifUhfbciZSfaohSfchfUfeWhhUffqfflaWhfpifbUfeYhhUfVflaofdeeYachajfaehcjeUhacfekhhacffkdhoYfVhYeeifUfaihUhaeeYfchfYfUiYhdfdoShYhSfeifjYhdfiYYhUfYffkmdjYfUfYheWhjYhUfYffqfdlYfaYjYf:A6/fhkihSfYeShaffShaffShVijSfahhSfahhSfahhYhSfffehdSfVijddfeYhYiYhachYhYiYhbeflThbdeiiSfahhSfahhSfahhSfYhShcbhSfahhSfahhSfahhSfahhSfahhSfahhSfeahhSfahhSfahhSfahhSfahhSfahhSfahhSfddhlafhSfahhYhSfahhSfachSfSfYhYhYhYhafjYhYcYhYheehfSfSfakiSfSfWhiYceifecihUhcefchhYfYfcffUhdkhhYfYfYfYfekehUhSheffhYhUfYfYfYfYfUhYiYfafeUhShYjYfYfejieYfYfefehYhYhchhYfYfchhYhcdfWhfahhehhfYhchdUfShUhShWfhUfeaieUfWhhWfhUffmhffUfcahUfXiehUfehhjYhYhYhYhedhfYhYhYhaheShShWieUfShfccfhUhcifUhfbciZYoSfchfUfcfhUffechdacfekhhacfYhUfaihUhaeeYfchfYffjejoYhdfiYYhUfYffkmdjYfUfYheWhjYhUfYfdhflYffkcdYYfahfYfVfoYhShYfajkYhdfhYYhefifYhfikcoYhUfYfeXflYhdfibYhUfYfeiifYf:A7/fhkihSfYeShaffShaffShVijSfahhSfahhSfahhYhSfffehdSfVijddfeYhYiYhachYhYiYhbeflThbdeiiSfahhSfahhSfahhSfYhShcbhSfahhSfahhSfahhSfahhSfahhSfahhSfeahhSfahhSfahhSfahhSfahhSfahhSfahhSfddhlafhSfahhYhSfahhSfachSfSfYhYhYhYhafjYhYcYhYheehfSfSfakiSfSfWhiYceifecihUhcefchhYfYfcffUhdkhhYfYfYfYfekehUhSheffhYhUfYfYfYfYfUhYiYfafeUhShYjYfYfejieYfYfefehYhYhchhYfYfchhYhcdfWhfahhehhfYhchdUfShUhShWfhUfeaieUfWhhWfhUffmhffUfcahUfXiehUfehhjYhYhYhYhedhfYhYhYhaheShShWieUfShfccfhUhcifUhfbciZYoSfchfUfcfhUffechdacfekhhacfYhUfaihUhaeeYfchfYffjejoYhdfiYYhUfYffkmdjYfUfYheWhjYhUfYfdhflYffkcdYYfdhfoYffjjjYYhfalejeffhUffqfflaWhdhibUfVflaofdbcYYfakhYfdhfoYfaefYfenlfYf">View the demo animation.</a></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Okay!</button>
+      </div>
+    </div>
+    
+    <div id="about" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="aboutLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="aboutLabel">About</h3>
+      </div>
+      <div class="modal-body">
+        <p>Made by <a href="http://twitter.com/maxogden">@maxogden</a> for the <a href="http://twitter.com/voxeljs">@voxeljs</a> project.</p>
+        <p>Based originally on Voxel Painter by Mr. Doob.</p>
+        <p>The version you are currently seeing is mine. <a href="http://twitter.com/DRogue_1337">@DRogue_1337</a></p>
+        <p>Report bugs <a href="https://github.com/DRogue1337/voxel-painter">on Github</a>.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+    </div>
+    
+    <div id="orthogamiExport" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="orthogamiExportLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="orthogamiExportLabel">Orthogami Export</h3>
+      </div>
+      <div class="modal-body">
+        <p>Generated by the <a href="https://github.com/mikolalysenko/orthogami/">Orthogami</a> library</p>
+        <div class="orthogami"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+    </div>
+    
+    <div id="paperstackExport" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="paperstackExportLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="paperstackExportLabel">Paperstack Export</h3>
+      </div>
+      <div class="modal-body">
+        <p>Generated by the <a href="http://github.com/maxogden/voxel-2d-print">voxel-2d-print</a> library</p>
+        <div class="canvases"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+    </div>
 
-      (function() {
-       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-       })();
-    </script>
+    <div id="imageImport" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="imageImportLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3 id="imageImportLabel">Import Image</h3>
+      </div>
+      <div class="modal-body">
+        <p>
+          Only images that were exported by this builder can be imported here.
+        </p>
+        <input name="file" type="file" />
+      </div>
+      <div class="modal-footer">
+        <button name="import" class="btn btn-primary" aria-hidden="true">Import</button>
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+    </div>
+    
+    <script type="text/javascript" src="assets/js/flatui-deps.js"></script>
+    <script type="text/javascript" src="lib/colorpicker/js/bootstrap-colorpicker.js"></script>
+    <script type="text/javascript" src="bundle.js"></script>
+
   </body>
-
 </html>

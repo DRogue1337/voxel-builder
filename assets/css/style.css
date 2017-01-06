@@ -38,7 +38,7 @@ body {
 .demo-text-box { margin-right: 24px; }
 .demo-panel-title { margin-bottom: 10px !important; padding-top: 10px !important; }
 .demo-panel-title a { color: black; text-decoration: none; }
-#instructions { width: 250px; position: absolute; top: 0px; right: 0px; }
+#instructions { width: 250px; position: absolute; top: 0px; right: 0px; height: 100%; }
 .instructions { background: white; border: 2px solid #1abc9c; border-radius: 6px; padding: 6px 1px 1px 6px; overflow-y: auto; text-align: left;}
 .actionsMenu { width: 224px; }
 .animationControls { width: 100%; position: absolute; bottom: 0px; display: none; }
@@ -57,7 +57,7 @@ body {
 .share p { margin-bottom: 10px !important; }
 .voxel-share img { height: 200px; }
 .voxel-share textarea { display: none; }  
-.dk_options_inner, .dk_touch .dk_options { max-height: 300px !important; }
+.dk_options_inner, .dk_touch .dk_options { max-height: 100% !important; }
 .color-container { margin: 5px 0 5px -20px; }
 .modal-body .control-group .login-field { width: 248px !important; }
 .modal-body .control-group { display: inline-block; }
